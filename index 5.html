@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personagem</title>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'IM Fell English SC', serif;
+            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'), url('imagem index 5.jpg'); /* Imagem de fundo principal */
+            background-size: cover;
+            background-position: center;
+            color: #e01c15;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 90%;
+            height: 90vh;
+            background-color: rgba(255, 248, 220, 0); /* Fundo totalmente transparente */
+            border: 6px double #e44d4d;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 20px;
+        }
+
+        .header {
+            text-align: center;
+            position: relative;
+        }
+
+        .print-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px 15px;
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'MedievalSharp', cursive;
+            transition: background-color 0.3s;
+        }
+
+        .print-btn:hover {
+            background-color: #5d2e0e;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .info, .attributes {
+            background-color: rgba(29, 29, 21, 0.6); /* Fundo transparente para permitir ver a imagem de fundo */
+            border: 3px solid #d64a27;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info:hover, .attributes:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .info h3, .attributes h3 {
+            text-align: center;
+            color: #5d4037;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+            background-color: rgba(139, 69, 19, 0.1);
+            border-radius: 5px;
+            padding: 3px;
+        }
+
+        strong {
+            color: #e94f2c;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo da barra transparente */
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            height: 20px;
+            border-radius: 8px;
+            background-color: #b64124;
+        }
+
+        @media (max-width: 800px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Ficha de Personagem</h2>
+            <button class="print-btn" onclick="window.print()">Imprimir</button>
+        </div>
+
+        <div class="content">
+            <div class="info">
+                <h1>Informações Básicas</h1>
+                <p><strong>Raça:</strong> <span id="raca"></span></p>
+                <p><strong>Classe:</strong> <span id="class"></span></p>
+            </div>
+
+            <div class="attributes">
+                <h3>Atributos</h3>
+                <ul>
+                    <li><strong>Força:</strong> <span id="forca"></span>
+                        <div class="progress-bar-container">
+                            <div id="forca-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                    <li><strong>Destreza:</strong> <span id="destreza"></span>
+                        <div class="progress-bar-container">
+                            <div id="destreza-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                    <li><strong>Inteligência:</strong> <span id="inteligencia"></span>
+                        <div class="progress-bar-container">
+                            <div id="inteligencia-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                    <li><strong>Carisma:</strong> <span id="carisma"></span>
+                        <div class="progress-bar-container">
+                            <div id="carisma-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                    <li><strong>Vigor:</strong> <span id="vigor"></span>
+                        <div class="progress-bar-container">
+                            <div id="vigor-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                    <li><strong>Percepção:</strong> <span id="percepcao"></span>
+                        <div class="progress-bar-container">
+                            <div id="percepcao-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                    <li><strong>Sorte:</strong> <span id="sorte"></span>
+                        <div class="progress-bar-container">
+                            <div id="sorte-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                    <li><strong>Sabedoria:</strong> <span id="sabedoria"></span>
+                        <div class="progress-bar-container">
+                            <div id="sabedoria-bar" class="progress-bar"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = ["raca", "class", "forca", "destreza", "inteligencia", "carisma", "vigor", "percepcao", "sorte", "sabedoria"];
+
+            params.forEach(param => {
+                const value = urlParams.get(param) || "Não informado";
+                document.getElementById(param).textContent = value;
+
+                if (param !== "raca" && param !== "class") {
+                    const valueNumeric = parseInt(value);
+                    if (!isNaN(valueNumeric) && valueNumeric >= 0 && valueNumeric <= 15) {
+                        const bar = document.getElementById(param + "-bar");
+                        const progress = (valueNumeric / 15) * 100;
+                        bar.style.width = progress + "%";
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

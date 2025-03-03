@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atributos de Personagem</title>
+    <style>
+        body {
+            font-family: 'Garamond', serif;
+            background-color: #000000;
+            color: #ECF0F1;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpaperaccess.com/full/636556.jpg'); /* Fundo estilo medieval */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 4em;
+            color: #ffffff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            margin-top: 30px;
+        }
+        .atributo {
+            margin: 25px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            width: 400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+            border: 2px solid #BDC3C7;
+        }
+        .atributo label {
+            font-weight: bold;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 1.6em;
+        }
+        input[type="number"] {
+            width: 100px;
+            height: 50px;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #7F8C8D;
+            border-radius: 8px;
+            background-color: #34495E;
+            color: #ECF0F1;
+            font-size: 1.8em;
+            user-select: none;
+        }
+        .btn {
+            background-color: #858888;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.6em;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #8a8181;
+        }
+        .btn:disabled {
+            background-color: #95A5A6;
+            cursor: not-allowed;
+        }
+        #resetar-pagina {
+            display: block;
+            margin: 50px auto;
+            background-color: #C0392B;
+            padding: 15px 30px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: background-color 0.3s ease;
+        }
+        #resetar-pagina:hover {
+            background-color: #E74C3C;
+        }
+        .resumo {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(44, 62, 80, 0.8);
+            border-radius: 10px;
+            width: 320px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            margin: 0 auto;
+        }
+        .resumo p {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #ECF0F1;
+        }
+        .pontos-restantes {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.6em;
+            text-align: center;
+        }
+        .mensagem {
+            font-size: 1.5em;
+            color: #E74C3C;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        #pronto-btn {
+            display: none;
+            background-color: #27AE60;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: background-color 0.3s ease;
+            margin: 50px auto;
+            width: 200px;
+            text-align: center;
+        }
+        #pronto-btn:hover {
+            background-color: #2ECC71;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Atributos de Personagem</h1>
+
+    <!-- Lista de atributos -->
+    <div class="atributo">
+        <label for="forca">Força:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="forca">-</button>
+            <input type="number" id="forca" value="8" readonly>
+            <button class="btn aumentar" data-atributo="forca">+</button>
+        </div>
+    </div>
+    <div class="atributo">
+        <label for="destreza">Destreza:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="destreza">-</button>
+            <input type="number" id="destreza" value="8" readonly>
+            <button class="btn aumentar" data-atributo="destreza">+</button>
+        </div>
+    </div>
+    <div class="atributo">
+        <label for="inteligencia">Inteligência:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="inteligencia">-</button>
+            <input type="number" id="inteligencia" value="8" readonly>
+            <button class="btn aumentar" data-atributo="inteligencia">+</button>
+        </div>
+    </div>
+    <div class="atributo">
+        <label for="carisma">Carisma:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="carisma">-</button>
+            <input type="number" id="carisma" value="8" readonly>
+            <button class="btn aumentar" data-atributo="carisma">+</button>
+        </div>
+    </div>
+    <div class="atributo">
+        <label for="vigor">Vigor:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="vigor">-</button>
+            <input type="number" id="vigor" value="8" readonly>
+            <button class="btn aumentar" data-atributo="vigor">+</button>
+        </div>
+    </div>
+    <div class="atributo">
+        <label for="percepcao">Percepção:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="percepcao">-</button>
+            <input type="number" id="percepcao" value="8" readonly>
+            <button class="btn aumentar" data-atributo="percepcao">+</button>
+        </div>
+    </div>
+    <div class="atributo">
+        <label for="sorte">Sorte:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="sorte">-</button>
+            <input type="number" id="sorte" value="8" readonly>
+            <button class="btn aumentar" data-atributo="sorte">+</button>
+        </div>
+    </div>
+    <div class="atributo">
+        <label for="sabedoria">Sabedoria:</label>
+        <div class="btn-group">
+            <button class="btn diminuir" data-atributo="sabedoria">-</button>
+            <input type="number" id="sabedoria" value="8" readonly>
+            <button class="btn aumentar" data-atributo="sabedoria">+</button>
+        </div>
+    </div>
+
+    <!-- Exibição de pontos restantes -->
+    <div class="pontos-restantes">
+        <p>Total de pontos restantes: <span id="pontos-restantes">27</span></p>
+    </div>
+
+    <!-- Mensagem quando os pontos acabarem -->
+    <div id="mensagem" class="mensagem" style="display: none;">
+        <p><strong>Você não tem mais pontos disponíveis para investir!</strong></p>
+    </div>
+
+    <!-- Botão "Pronto" -->
+    <button id="pronto-btn" onclick="redirecionar()">Pronto</button>
+
+    <!-- Botão para resetar os atributos -->
+    <button id="resetar-pagina">Resetar Atributos</button>
+
+    <!-- Resumo -->
+    <div class="resumo">
+        <h2>Resumo dos Atributos</h2>
+        <p><strong>Força:</strong> <span id="res_forca">8</span></p>
+        <p><strong>Destreza:</strong> <span id="res_destreza">8</span></p>
+        <p><strong>Inteligência:</strong> <span id="res_inteligencia">8</span></p>
+        <p><strong>Carisma:</strong> <span id="res_carisma">8</span></p>
+        <p><strong>Vigor:</strong> <span id="res_vigor">8</span></p>
+        <p><strong>Percepção:</strong> <span id="res_percepcao">8</span></p>
+        <p><strong>Sorte:</strong> <span id="res_sorte">8</span></p>
+        <p><strong>Sabedoria:</strong> <span id="res_sabedoria">8</span></p>
+    </div>
+
+    <script>
+        let pontosDisponiveis = 27;
+
+        function atualizarResumo() {
+            document.getElementById("res_forca").textContent = document.getElementById("forca").value;
+            document.getElementById("res_destreza").textContent = document.getElementById("destreza").value;
+            document.getElementById("res_inteligencia").textContent = document.getElementById("inteligencia").value;
+            document.getElementById("res_carisma").textContent = document.getElementById("carisma").value;
+            document.getElementById("res_vigor").textContent = document.getElementById("vigor").value;
+            document.getElementById("res_percepcao").textContent = document.getElementById("percepcao").value;
+            document.getElementById("res_sorte").textContent = document.getElementById("sorte").value;
+            document.getElementById("res_sabedoria").textContent = document.getElementById("sabedoria").value;
+        }
+
+        function atualizarPontosRestantes() {
+            document.getElementById("pontos-restantes").textContent = pontosDisponiveis;
+
+            if (pontosDisponiveis === 0) {
+                document.getElementById("mensagem").style.display = "block";
+                document.getElementById("pronto-btn").style.display = "block";  // Exibe o botão "Pronto"
+            } else {
+                document.getElementById("mensagem").style.display = "none";
+                document.getElementById("pronto-btn").style.display = "none";  // Esconde o botão "Pronto"
+            }
+        }
+
+        function alterarAtributo(atributo, operacao) {
+            const campo = document.getElementById(atributo);
+            let valorAtual = parseInt(campo.value);
+
+            if (operacao === "aumentar" && valorAtual < 15 && pontosDisponiveis > 0) {
+                campo.value = valorAtual + 1;
+                pontosDisponiveis--;
+            } else if (operacao === "diminuir" && valorAtual > 8) {
+                campo.value = valorAtual - 1;
+                pontosDisponiveis++;
+            }
+
+            atualizarPontosRestantes();
+            atualizarResumo();
+        }
+
+        // Adicionando eventos para os botões de aumentar e diminuir
+        const botoesAumentar = document.querySelectorAll('.aumentar');
+        botoesAumentar.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const atributo = botao.dataset.atributo;
+                alterarAtributo(atributo, 'aumentar');
+            });
+        });
+
+        const botoesDiminuir = document.querySelectorAll('.diminuir');
+        botoesDiminuir.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const atributo = botao.dataset.atributo;
+                alterarAtributo(atributo, 'diminuir');
+            });
+        });
+
+        // Resetar a página
+        document.getElementById("resetar-pagina").addEventListener('click', () => {
+            pontosDisponiveis = 27;
+            document.getElementById("forca").value = 8;
+            document.getElementById("destreza").value = 8;
+            document.getElementById("inteligencia").value = 8;
+            document.getElementById("carisma").value = 8;
+            document.getElementById("vigor").value = 8;
+            document.getElementById("percepcao").value = 8;
+            document.getElementById("sorte").value = 8;
+            document.getElementById("sabedoria").value = 8;
+
+            atualizarPontosRestantes();
+            atualizarResumo();
+        });
+
+
+        function novaPagina(characterClass) {
+            const urlParams = new URLSearchParams(window.location.search);
+            var raca = urlParams.get('raca');
+
+            // Construção da URL com o parâmetro
+            let url = "index 5.html?raca=" + raca + "class=" + characterClass;
+            // Redireciona para a próxima página
+            window.location.href = url;
+
+        }
+
+        function redirecionar() {
+    // Pegando os valores dos atributos
+    const forca = document.getElementById("forca").value;
+    const destreza = document.getElementById("destreza").value;
+    const inteligencia = document.getElementById("inteligencia").value;
+    const carisma = document.getElementById("carisma").value;
+    const vigor = document.getElementById("vigor").value;
+    const percepcao = document.getElementById("percepcao").value;
+    const sorte = document.getElementById("sorte").value;
+    const sabedoria = document.getElementById("sabedoria").value;
+
+    // Pegando os parâmetros existentes da URL (raca e class)
+    const urlParams = new URLSearchParams(window.location.search);
+    const raca = urlParams.get('raca');
+    const characterClass = urlParams.get('class');
+
+    // Criando a URL com todos os parâmetros
+    const url = new URL("index 5.html", window.location.href);
+    url.searchParams.set("raca", raca);
+    url.searchParams.set("class", characterClass);
+    url.searchParams.set("forca", forca);
+    url.searchParams.set("destreza", destreza);
+    url.searchParams.set("inteligencia", inteligencia);
+    url.searchParams.set("carisma", carisma);
+    url.searchParams.set("vigor", vigor);
+    url.searchParams.set("percepcao", percepcao);
+    url.searchParams.set("sorte", sorte);
+    url.searchParams.set("sabedoria", sabedoria);
+
+    // Redireciona para a nova URL
+    window.location.href = url.toString();
+}
+
+        // Inicializa a página com os valores corretos
+        atualizarPontosRestantes();
+        atualizarResumo();
+    </script>
+
+</body>
+</html>

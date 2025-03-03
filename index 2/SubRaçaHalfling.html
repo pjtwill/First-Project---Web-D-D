@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha Sua Subraça</title>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('stock-photo-old-paper-background-553326538-transformed.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cave-stone {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 24px;
+            color: #4A2C2A;
+        }
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+        button:hover {
+            background-color: #eb760a;
+        }
+        .race-info {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .subrace-image {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 375px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="cave-stone">Escolha Sua Subraça</h2>
+        <button class="cave-stone" onclick="voltar()">Voltar</button>
+        <button class="cave-stone" onclick="continuar()">Continuar</button>
+        <select class="cave-stone" id="selectBox3" aria-label="Selecione sua subraça">
+            <option class="cave-stone" value="Pés Leves"selected>Pés Leves</option>
+            <option class="cave-stone" value="Pés Robustos">Pés Robustos</option>
+        </select>
+        <div id="subraceDescriptions" class="cave-stone race-info" style="text-align: left;"></div>
+    </div>
+    <script>
+        function voltar() {
+            window.location.href = 'Projeto DeD.html';
+        }
+        function continuar()
+            {
+            location.href = '../index 3.html?raca=' + document.getElementById("selectBox3").value;  // Substituir por location.href = 'url_proxima_pagina.html';
+            }
+
+        const imageUrlMap = {
+            'Pés Leves': 'Pés Leves.png',
+            'Pés Robustos': 'Pés Robustos.png'
+        };
+
+        const subraceDescriptions = {
+            'Pés Leves': `
+                <p><strong>Traços Subraciais de Pés Leves:</strong></p>
+                <p><strong>Como</strong> um halfling pés-leves, você pode esconder-se facilmente, mesmo usando apenas outras pessoas como cobertura. Você geralmente é afável e se dá muito bem com os outros. Nos Reinos Esquecidos, os halflings pés-leves espalharam-se até os lugares mais distantes e são a variedade mais comum.<br><strong>Pés-leves</strong> são mais propensos à vontade de viajar do que os outros halflings, e muitas vezes vivem ao lado de outras raças ou levam uma vida nômade. No mundo de Greyhawk, estes halflings são chamados pés-peludos ou companheiros altos.</p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Carisma aumenta em 1.</p>
+                <p><strong>Furtividade Natural:</strong> Você pode tentar se esconder mesmo quando possuir apenas a cobertura de uma criatura que for no mínimo um tamanho maior que o seu.</p>
+            `,
+            'Pés Robustos': `
+                <p><strong>Traços Subraciais de Pés Robustos:</strong></p>
+                <p><strong>Um</strong> Um halfling robustos é mais resistente do que a média de sua raça e possui certa resistência aos venenos. Alguns dizem que os robustos têm sangue dos anões. Nos Reinos Esquecidos, esses halflings são chamados de austeros, e são mais comuns no sul.</p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Constituição aumenta em 1.</p>
+                <p><strong>Resiliência dos Robustos:</strong> Você tem vantagem em testes de resistência contra veneno e tem resistência contra dano de veneno.</p>
+            `
+        };
+
+        const selectBox3 = document.getElementById('selectBox3');
+        const subraceDescriptionsDiv = document.getElementById('subraceDescriptions');
+
+        function updateSubraceDescription() {
+            const subrace = selectBox3.value;
+            const description = subraceDescriptions[subrace] || '';
+            subraceDescriptionsDiv.innerHTML = description;
+            subraceDescriptionsDiv.style.display = description ? 'block' : 'none';
+
+            const imageUrl = imageUrlMap[subrace] || '';
+
+            let imageElement = document.getElementById('subraceImage');
+            if (!imageElement) {
+                imageElement = document.createElement('img');
+                imageElement.id = 'subraceImage';
+                imageElement.className = 'subrace-image';
+                document.body.appendChild(imageElement);
+            }
+
+            if (imageUrl) {
+                imageElement.src = imageUrl;
+                imageElement.style.display = 'block';
+            } else {
+                imageElement.style.display = 'none';
+            }
+        }
+
+        selectBox3.addEventListener('change', updateSubraceDescription);
+    </script>
+</body>
+</html>

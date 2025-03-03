@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Por favor, selecione sua raça.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('stock-photo-old-paper-background-553326538-transformed.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .cave-stone {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 24px;
+            color: #4A2C2A;
+        }
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        select {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+            width: auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+        button:hover {
+            background-color: #eb760a;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .race-info {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .race-image {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 800px;
+            width: 300px;
+            height: 375px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="cave-stone">Hora de selecionar sua raça!</h2>
+        </select>
+        <select class="cave-stone" id="selectBox2" aria-label="Selecione sua raça">
+            <option class="cave-stone" value="Anão"selected>Anão</option>
+            <option class="cave-stone" value="Elfo">Elfo</option>
+            <option class="cave-stone" value="Humano">Humano</option>
+            <option class="cave-stone" value="Tiefling">Tiefling</option>
+            <option class="cave-stone" value="Meio-Orc">Meio-Orc</option>
+            <option class="cave-stone" value="Meio-Elfo">Meio-Elfo</option>
+            <option class="cave-stone" value="Halfling">Halfling</option>
+            <option class="cave-stone" value="Draconato">Draconato</option>
+            <option class="cave-stone" value="Gnomo">Gnomo</option>
+        </select>
+        <button class="cave-stone" onclick="Continuar()">Continuar</button>
+        <div id="result" class="cave-stone result" aria-live="polite"></div>
+        <div id="raceInfo" class="cave-stone race-info" style="text-align: left;"></div>
+    </div>
+    <script> 
+    
+
+        function Continuar() 
+        {
+    const race = document.getElementById('selectBox2').value;
+    let page = '';
+
+    switch (race) {
+        case 'Anão':
+            page = 'SubRaçaAnão.html';
+            break;
+        case 'Elfo':
+            page = 'SubRaçaElfo.html';
+            break;
+        case 'Halfling':
+            page = 'SubRaçaHalfling.html';
+            break;
+        case 'Gnomo':
+            page = 'SubRaçaGnomo.html';
+            break;
+        case 'Humano':
+            page = '../index 3.html?raca=Humano';
+            break;
+        case 'Tiefling':
+            page = '../index 3.html?raca=Tiefling';
+            break;
+        case 'Meio-Orc':
+            page = '../index 3.html?raca=Meio-Orc';
+            break;
+        case 'Meio-Elfo':
+            page = '../index 3.html?raca=Meio-Elfo';
+            break;
+            case 'Draconato':
+            page = '../index 3.html?raca=Draconato';
+            break;
+        default:
+            page = '../index 3.html';
+            break;
+    }
+
+    window.location.href = page;
+}
+        
+        const imageUrlMap = {
+            'Anão': 'Anão DeD.png',
+            'Elfo': 'Elfo.png',
+            'Humano': 'Humano.png',
+            'Tiefling': 'Tiefling.png',
+            'Meio-Orc': 'Meio-Orc.png',
+            'Meio-Elfo': 'Meio-Elfo.png',
+            'Halfling': 'Halfling.png',
+            'Draconato': 'Draconato.png',
+            'Gnomo': 'Gnomo.png'
+        };
+
+        const raceDescriptions = {
+            'Anão': `
+                <p><strong>Traços raciais de Anões:</strong></p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Constituição aumenta em 2.</p>
+                <p><strong>Idade:</strong> Anões tornam-se maduros na mesma proporção que os humanos, mas são considerados jovens até atingirem a idade de 50 anos. Em média, eles vivem 350 anos.</p>
+                <p><strong>Tendência:</strong> A maioria dos anões é leal, pois acreditam firmemente nos benefícios de uma sociedade bem organizada. Eles tendem para o bem, com um forte senso de honestidade e uma crença de que todos merecem compartilhar os benefícios de uma ordem social justa.</p>
+                <p><strong>Tamanho:</strong> Anões estão entre 1,20 e 1,50 metro de altura e pesam cerca de 75 kg. Seu tamanho é Médio.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é de 7,5 metros. Seu deslocamento não é reduzido quando estiver usando armadura pesada.</p>
+                <p><strong>Visão no Escuro:</strong> Acostumado à vida subterrânea, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.</p>
+                <p><strong>Resiliência Anã:</strong> Você possui vantagem em testes de resistência contra venenos e resistência contra dano de veneno.</p>
+                <p><strong>Treinamento Anão em Combate:</strong> Você tem proficiência com machados de batalha, machadinhas, martelos leves e martelos de guerra.</p>
+                <p><strong>Proficiência com Ferramentas:</strong> Você tem proficiência em uma ferramenta de artesão à sua escolha entre: ferramentas de ferreiro, suprimentos de cervejeiro ou ferramentas de pedreiro.</p>
+                <p><strong>Especialização em Rochas:</strong> Sempre que você realizar um teste de Inteligência (História) relacionado à origem de um trabalho em pedra, você é considerado proficiente na perícia História e adiciona o dobro do seu bônus de proficiência ao teste, ao invés do seu bônus de proficiência normal.</p>
+                <p><strong>Idiomas:</strong> Você pode falar, ler e escrever Comum e Anão. O idioma Anão é repleto de consoantes duras e sons guturais, e essa característica influencia, como um sotaque, qualquer outro idioma que o anão falar.</p>
+            `,
+            'Elfo': `
+                <p><strong>Traços Raciais de Elfos:</strong></p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Destreza aumenta em 2.</p>
+                <p><strong>Idade:</strong> Embora os elfos atinjam a maturidade física com praticamente a mesma idade dos humanos, a compreensão élfica da idade adulta vai além da maturidade física, abrangendo sua experiência sobre o mundo. Um elfo tipicamente assume a idade adulta e um nome adulto com cerca de 100 anos de idade e pode viver 750 anos.</p>
+                <p><strong>Tendência:</strong> Elfos amam a liberdade, a diversidade e a expressão pessoal, então eles inclinam-se forte e suavemente para aspectos do caos. Eles valorizam e protegem a liberdade dos outros como a sua própria, e são geralmente mais bondosos que o contrário. Os drow são exceção. Seu exílio no Subterrâneo fez deles perversos e perigosos. Drow são geralmente mais maus que o contrário.</p>
+                <p><strong>Tamanho:</strong> Elfos medem entre 1,50 a 1,80 metro de altura e possuem constituição delgada. Seu tamanho é Médio.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 9 metros.</p>
+                <p><strong>Visão no Escuro:</strong> Acostumado às florestas crepusculares e ao céu noturno, você possui uma visão superior em condições de escuridão e na penumbra. Você pode enxergar na penumbra a até 18 metros como se fosse na luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.</p>
+                <p><strong>Sentidos Aguçados:</strong> Você tem proficiência na perícia Percepção.</p>
+                <p><strong>Ancestral Feérico:</strong> Você tem vantagem nos testes de resistência para resistir a ser enfeitiçado e magias não podem colocá-lo para dormir.<p>
+                <p><strong>Transe:</strong> Elfos não precisam dormir. Ao invés disso, eles meditam profundamente, permanecendo semiconscientes, durante 4 horas por dia. (A palavra em idioma comum para tal meditação é "transe".) Enquanto medita, um elfo é capaz de sonhar de certo modo. Esses sonhos na verdade são exercícios mentais que se tornam reflexos através de anos de prática. Depois de descansar dessa forma, você ganha os mesmos benefícios que um humano depois de 8 horas de sono.</p>   
+                <p><strong>Idiomas:</strong> Você pode falar, ler e escrever Comum e Élfico. O Élfico é um idioma fluido, com entonações sutis e gramática complexa. A literatura élfica é rica e diversa, e suas canções e poemas são famosos entre outras raças. Muitos bardos aprendem essa língua para que possam adicionar canções élficas ao seu repertório.</p> 
+            `,
+            'Humano': `
+                <p><strong>Traços Raciais de Humanos:</strong></p>
+                <p><strong>Aumento de Valor de Habilidade:</strong> Todos os seus valores de habilidade aumentam em 1.</p>
+                <p><strong>Idade:</strong> Os humanos chegam à idade adulta no final da adolescência e vivem menos de um século.</p>   
+                <p><strong>Tendência:</strong> Os humanos não possuem inclinação a nenhuma tendência em especial. Os melhores e os piores são encontrados entre eles.</p>
+                <p><strong>Tamanho:</strong> Os humanos variam muito em altura e peso, podem ter quase 1,50 metro ou mais de 1,80 metro. Independentemente da sua posição entre esses valores, o seu tamanho é Médio.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 9 metros.</p>
+                <p><strong>Idiomas:</strong> Você pode falar, ler e escrever Comum e outro idioma adicional, à sua escolha. Os humanos normalmente aprendem os idiomas dos povos que convivem, incluindo dialetos obscuros. Eles gostam de rechear seu discurso com palavras emprestadas de outras línguas: xingamentos orcs, expressões musicais élficas, frases militares anãs e outros.</p>
+                `,
+            'Tiefling': `
+                <p><strong>Traços Raciais dos Tieflings:</strong></p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Inteligência aumenta em 1 e seu valor de Carisma aumenta em 2.</p>
+                <p><strong>Idade:</strong> Os tieflings amadurecem ao mesmo tempo que os humanos, mas vivem alguns anos a mais.</p>
+                <p><strong>Tendência:</strong> Tieflings não possuem uma tendência inata ao mal, mas muitos acabam por abraçá-lo. Maligno ou não, uma natureza independente inclina a maioria dos tieflings ao alinhamento caótico.</p>
+                <p><strong>Tamanho:</strong> Os tieflings possuem o mesmo tamanho e compleição dos humanos. Seu tamanho é Médio.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 9 metros.</p>
+                <p><strong>Visão no Escuro:</strong> Graças a sua herança infernal, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.</p.>
+                <p><strong>Resistência Infernal:</strong> Você possui resistência a dano de fogo.</p>
+                <p><strong>Legado Infernal:</strong> Você conhece o truque taumaturgia. Quando você atingir o 3° nível, você poderá conjurar a magia repreensão infernal como uma magia de 2° nível. Quando você atingir o 5° nível, você também poderá conjurar a magia escuridão. Você precisa terminar um descanso longo para poder usar as magias desse traço novamente. Sua habilidade de conjuração para essas magias é Carisma.</p>
+                <p><strong>Idiomas:</strong> Você sabe falar, ler e escrever Comum e Infernal.</p>
+            `,
+            'Meio-Orc': `
+                <p><strong>Traços Raciais de Meio-Orcs:</strong></p>
+                <p><strong>Aumento de Valor de Habilidade:</strong> Seu valor de Força aumenta em 2 e seu valor de Constituição aumenta em 1.</p>
+                <p><strong>Idade:</strong> Os meio-orcs amadurecem um pouco antes dos humanos, atingindo a idade adulta aos 14 anos. Eles envelhecem notavelmente mais rápido e, raramente, vivem mais e 75 anos.</p>
+                <p><strong>Tendência:</strong> Meio-orcs tem uma tendência inata ao caos devido aos seus parentes orcs e não são fortemente inclinados ao bem. Meio-orcs que cresceram entre orcs e desejam viver e estão dispostos a passar sua vida entre eles, tendem a ser malignos.</p>
+                <p><strong>Tamanho:</strong> Meio-orcs são de certa forma maiores e mais largos que os humanos, medindo entre 1,80 metro e 2,10 metros. Seu tamanho é Médio.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 9 metros.</p>
+                <p><strong>Visão do Escuro:</strong> Graças ao seu sangue orc, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.</p>
+                <p><strong>Ameaçador:</strong> Você adquire proficiência na perícia Intimidação.</p>
+                <p><strong>Resistência Implacável:</strong> Quando você é reduzido a 0 pontos de vida mas não é completamente morto, você pode voltar para 1 ponto de vida. Você não pode usar essa característica novamente até completar um descanso longo.</p>
+                <p><strong>Ataques Selvagens:</strong> Quando você atinge um ataque crítico com uma arma corpo-a-corpo, você pode rolar um dos dados de dano da arma mais uma vez e adicioná-lo ao dano extra causado pelo acerto crítico.</p>
+                <p><strong>Idiomas:</strong> Você sabe falar, ler e escrever Comum, Orc. O Orc é um idioma ríspido, possuindo uma linguagem de consoantes duras. Ele não possui alfabeto próprio, mas usa o alfabeto Anão.</p>
+            `,
+            'Meio-Elfo': `
+                <p><strong>Traços Raciais de Meio-Elfos:</strong></p>
+                <p><strong>Aumento de Valor de Habilidade:<strong> Seu valor de Carisma aumenta em 2 e outros dois valores de habilidade, à sua escolha, aumentam em 1.</p>
+                <p><strong>Idade:</strong> Meio-elfos atingem a maturidade ao mesmo tempo que os humanos atingem a idade adulta, por volta dos 20 anos. Eles vivem muito mais que os humanos, no entanto, raramente ultrapassam os 180 anos.</p>
+                <p><strong>Tendência:</strong> Meio-elfos compartilham a veia caótica da sua herança élfica. Eles valorizam tanto a sua liberdade quanto sua expressão criativa, não demonstrando qualquer apresso por líderes ou seguidores. Eles se irritam com regras, ressentindo com exigências de outros e, as vezes, se provam incertos, ou pelo menos, imprevisíveis.</p>
+                <p><strong>Tamanho:</strong> Meio-elfos tem aproximadamente a mesma altura dos humanos, variando entre 1,50 metro e 1,80 metro. Seu tamanho é Médio.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 9 metros.</p>
+                <p><strong>Visão no Escuro:</strong> Graças ao seu sangue élfico, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.</p>
+                <p><strong>Ancestral Feérico:</strong> Você possui vantagem em testes de resistência contra encantamento e magia não pode colocar você pra dormir.</p>
+                <p><strong>Versatilidade em Perícia:</strong> Você ganha proficiência em duas perícias, à sua escolha.</p>
+                <p><strong>Idiomas:</strong> Você sabe falar, ler e escrever Comum, Élfico e um idioma adicional, à sua escolha.</p>
+                `,
+            'Halfling': `
+                <p><strong>Traços Raciais de Halflings:</strong></p>
+                <p><strong>Aumento de Valor de Habilidade:</strong> Seu valor de Destreza aumenta em 2.</p>
+                <p><strong>Idade:</strong> Um halfling atinge a idade adulta aos 20 anos e pode chegar a 150 anos.</p>
+                <p><strong>Tendência:</strong> A maioria dos halflings é leal e boa. Via de regra, eles possuem um bom coração e são amáveis, odeiam ver o sofrimento dos outros e não toleram a opressão. Eles também são muito ordeiros e tradicionais, fortemente apegados à sua comunidade e ao conforto de suas antigas tradições.</p>
+                <p><strong>Tamanho:</strong> Halflings medem cerca de 0,90 metro de altura e pesam aproximadamente 20 kg. Seu tamanho é Pequeno.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 7,5 metros.</p>
+                <p><strong>Sortudo:</strong> Quando você obtiver um 1 natural em uma jogada de ataque, teste de habilidade ou teste de resistência, você pode jogar de novo o dado e deve utilizar o novo resultado.</p>
+                <p><strong>Bravura:</strong> Você tem vantagem em testes de resistência contra ficar amedrontado.</p>
+                <p><strong>Agilidade de Halfing:</strong> Você pode mover-se através do espaço de qualquer criatura que for de um tamanho maior que o seu.</p>
+                <p><strong>Idiomas:</strong> Você pode falar, ler e escrever Comum e Halfling. A linguagem Halfling não é secreta, mas os halflings são relutantes em compartilhá-la com os outros. Eles escrevem muito pouco, por isso eles não possuem uma literatura rica. No entanto, sua tradição oral é muito forte. Quase todos os halflings falam o idioma Comum para conversar com as pessoas das terras que habitam, ou através dasquais eles estejam viajando.</p>
+                `,
+            'Draconato': `
+                <p><strong>Traços Raciais de Draconatos:</strong></p>
+                <p><strong>Aumento de Valor de Habilidade:</strong> Seu valor de Força aumenta em 2 e seu valor de Carisma aumenta em 1.</p>
+                <p><strong>Idade:</strong> Draconatos jovens crescem rapidamente. Eles caminham horas após nascerem, adquirindo o tamanho e desenvolvimento semelhante a de uma criança humana de 10 anos com 3 anos de idade e alcançam a maturidade aos 15. Eles costumam viver até os 80.</p>
+                <p><strong>Tendências:</strong> Os draconatos tendem aos extremos, realizando uma escolha consciente de um lado ou do outro da guerra cósmica entre o bem e o mal (representada por Bahamut e Tiamat, respectivamente). A maioria dos draconatos é boa, mas os que vão para o lado de Tiamat podem se tornar vilões terríveis.</p>
+                <p><strong>Tamanho:</strong> Os draconatos são mais altos e mais pesados que os humanos, geralmente possuindo mais de 1,80 metro e normalmente pesando mais de 125 kg. Seu tamanho é Médio.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 9 metros.</p>
+                <p><strong>Ancestral Dracônico:</strong> Você possui um ancestral dracônico. Escolha um tipo de dragão da tabela Ancestral Dracônico. Sua arma de sopro e resistência a dano são determinadas pelo tipo de dragão, como mostrado na tabela. </p>
+                <p><img src="https://rpgeboardgames.com/wp-content/uploads/2023/05/Ancestral-300x167.jpg" /></p>
+                <p><strong>Arma de Sopro:</strong> Você pode usar uma ação para exalar energia destrutiva. Seu ancestral dracônico determina o tamanho, formado e tipo de dano que você expele. Quando você usa sua arma de sopro, cada criatura na área exalada deve realizar um teste de resistência, o tipo do teste é determinado pelo seu ancestral dracônico. A CD do teste de resistência é 8 + seu modificador de Constituição + seu bônus de proficiência. Uma criatura sofre 2d6 de dano num fracasso e metade desse dano num sucesso. O dano aumenta para 3d6 no 6° nível, 4d6 no 11° nível e 5d6 no 16° nível. Depois de usar sua arma de sopro, você não poderá utilizá-la novamente até completar um descanso curto ou longo.</p>
+                <p><strong>Resistência a Dano:</strong> Você possui resistência ao tipo de dano associado ao seu ancestral dracônico.</p>
+                <p><strong>Idiomas:</strong>Você pode falar, ler e escrever Comum e Dracônico. O idioma Dracônico é conhecido por ser uma das mais antigas línguas e ainda é usado no estudo de magia. A linguagem soa áspera para a maioria das criaturas, incluindo várias consoantes e silabas firmes.</p>
+            `,
+            'Gnomo': `
+                <p><strong>Traços Raciais de Gnomos:</strong></p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Inteligência aumenta em 2.</p>
+                <p><strong>Idade:</strong> Gnomos amadurecem a mesma proporção que os humanos e, a maioria, atinge a idade adulta por volta dos 40 anos. Eles podem viver entre 350 e 500 anos.</p>
+                <p><strong>Tendência:</strong> Os gnomos geralmente são bons. Os que tendem para a ordem são sábios, engenheiros, pesquisadores, escolásticos, investigadores ou inventores. Os que tendem ao caos são menestréis, engenhoqueiros, andarilhos ou joalheiros caprichosos. Gnomos são bons de coração e, até mesmo os trapaceiros entre eles tendem a ser mais brincalhões que perversos.</p>
+                <p><strong>Tamanho:</strong> Os gnomos tem entre 0,90 e 1,20 metro e seu peso médio é de 20 kg. Seu tamanho é Pequeno.</p>
+                <p><strong>Deslocamento:</strong> Seu deslocamento base de caminhada é 7,5 metros.</p>
+                <p><strong>Visão no Escuro:</strong> Acostumado à vida subterrânea, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza.</p>
+                <p><strong>Esperteza Gnômica:</strong> Você possui vantagem em todos os testes de resistência de Inteligência, Sabedoria e Carisma contra magia.</p>
+                <p><strong>Idiomas:</strong> Você sabe falar, ler e escrever Comum e Gnômico. A linguagem Gnômica, que usa o alfabeto Anão, é conhecida por suas técnicas de dissertação e por seus catálogos de conhecimento sobre o mundo natural.</p>
+            `,
+        };
+
+         // Função que atualiza a descrição e imagem ao selecionar uma opção
+         function updateRaceInfo() {
+            const race = document.getElementById('selectBox2').value;
+            const result = `Você escolheu: ${race}`;
+            document.getElementById('result').innerText = result;
+
+            // Atualizando a descrição
+            const raceInfo = raceDescriptions[race] || '';
+            document.getElementById('raceInfo').innerHTML = raceInfo;
+            document.getElementById('raceInfo').style.display = raceInfo ? 'block' : 'none';
+
+            // Atualizando a imagem
+            const imageUrl = imageUrlMap[race] || '';
+            let imageElement = document.getElementById('raceImage');
+            if (!imageElement) {
+                imageElement = document.createElement('img');
+                imageElement.id = 'raceImage';
+                imageElement.className = 'race-image';
+                document.body.appendChild(imageElement);
+            }
+
+            if (imageUrl) {
+                imageElement.src = imageUrl;
+                imageElement.style.display = 'block';
+            } else {
+                imageElement.style.display = 'none';
+            }
+        }
+
+        // Adicionando o evento para atualizar a descrição e imagem quando a seleção mudar
+        document.getElementById('selectBox2').addEventListener('change', updateRaceInfo);
+
+        // Chama a função uma vez ao carregar a página para garantir que a descrição da opção selecionada seja mostrada imediatamente
+        window.onload = updateRaceInfo;
+        
+
+        selectBox2.addEventListener('change', updateResult);
+    </script>
+</body>
+</html>

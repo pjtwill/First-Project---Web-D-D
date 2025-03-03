@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha Sua Subraça</title>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('stock-photo-old-paper-background-553326538-transformed.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cave-stone {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 24px;
+            color: #4A2C2A;
+        }
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+        button:hover {
+            background-color: #eb760a;
+        }
+        .race-info {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .subrace-image {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 375px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="cave-stone">Escolha Sua Subraça</h2>
+        <button class="cave-stone" onclick="voltar()">Voltar</button>
+        <button class="cave-stone" onclick="continuar()">Continuar</button>
+        <select class="cave-stone" id="selectBox3" aria-label="Selecione sua subraça">
+            <option class="cave-stone" value="Alto Elfo"selected>Alto Elfo</option>
+            <option class="cave-stone" value="Elfo da Floresta">Elfo da Floresta</option>
+            <option class="cave-stone" value="Elfo Negro">Elfo Negro</option>
+        </select>
+        <div id="subraceDescriptions" class="cave-stone race-info" style="text-align: left;"></div>
+    </div>
+    <script>
+        function voltar() {
+            window.location.href = 'Projeto DeD.html';
+        }
+        function continuar()
+            {
+            location.href = '../index 3.html?raca=' + document.getElementById("selectBox3").value;  // Substituir por location.href = 'url_proxima_pagina.html';
+            
+        }
+
+        const imageUrlMap = {
+            'Alto Elfo': 'Alto Elfo.png',
+            'Elfo da Floresta': 'Elfo da Floresta.png',
+            'Elfo Negro': 'Elfo Negro.png'
+        };
+
+        const subraceDescriptions = {
+            'Alto Elfo': `
+                <p><strong>Traços Subraciais de Alto Elfo:</strong></p>
+                <p><strong>Como</strong> alto elfo, você possui uma mente afiada e um domínio da magia básico. Em muitos dos mundos de D&D, existem dois tipos de altos elfos. Um tipo (que inclui os elfos cinzentos e elfos do vale de Greyhawk, os Silvanesti de Dragonlance, e os elfos do sol dos Reinos Esquecidos) são arrogantes e reclusos, acreditando serem superiores aos não elfos e até mesmo a outros elfos. O outro tipo (como os altos elfos de Greyhawk, os Qualinesti de Dragonlance e os elfos da lua dos Reinos Esquecidos) são mais comuns e amigáveis, e muitas vezes encontrados entre humanos e outras raças.<br><strong>Os</strong> elfos do sol de Faerûn (também chamado de elfos dourados ou elfos do amanhecer) têm pele bronzeada e cabelos cor de cobre, negros ou louro dourado. Seus olhos são dourados, prateados ou negros. Os elfos da lua (também chamados de elfos de prata ou elfos cinzentos) são muito mais pálidos, com pele de alabastro por vezes tingida de azul. Normalmente, eles têm cabelos de um branco prateado, negros ou azuis, diversos tons de loiro, castanho e vermelho não são incomuns. Seus olhos são azuis ou verdes com manchas douradas.</p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Inteligência aumenta em 1.</p>
+                <p><strong>Treinamento Élfico com Armas:</strong> Você possui proficiência com espadas longas, espadas curtas, arcos longos e arcos curtos.</p>
+                <p><strong>Truque:</strong> Você conhece um truque, à sua escolha, da lista de truques do mago. Inteligência é a habilidade usado para conjurar este truque.</p>
+                <p><strong>Idioma Adicional:</strong> Você pode falar, ler e escrever um idioma adicional à sua escolha.</p>
+            `,
+            'Elfo da Floresta': `
+                <p><strong>Traços Subraciais de Elfo da Floresta:</strong></p>
+                <p><strong>Como</strong> um elfo da floresta, você possui sentidos e intuição aguçados, seus pés ágeis guiam-no rápida e furtivamente através de suas florestas nativas. Essa categoria inclui os elfos selvagens (grugach) de Greyhawk e os Kagonesti de Dragonlance, bem como as raças chamadas de elfos da floresta em Greyhawk e nos Reinos Esquecidos. Em Faerûn, os elfos da floresta (também chamados de elfos selvagens, elfos verdes ou elfos do bosque) são reclusos e desconfiados dos não elfos.<br><strong>A</strong> pele dos elfos da floresta tende a ser de matiz cobreada, algumas vezes com traços esverdeados. Seu cabelo geralmente é castanho ou negro, mas ocasionalmente podem ser loiros ou cor de cobre. Seus olhos são verdes, castanhos ou cor de avelã.</p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Sabedoria aumenta em 1.</p>
+                <p><strong>Pés Ligeiros:</strong> Seu deslocamento base de caminhada aumenta para 10,5 metros.</p>
+                <p><strong>Treinamento Élfico com Armas:</strong> Você possui proficiência com espadas longas, espadas curtas, arcos longos e arcos curtos.</p>
+                <p><strong>Máscara da Natureza:</strong> Você pode tentar se esconder mesmo quando você está apenas levemente obscurecido por folhagem, chuva forte, neve caindo, névoa ou outro fenômeno natural.</p>
+            `,
+            'Elfo Negro': `
+                <p><strong>Traços Subraciais de Elfo Negro:</strong></p>
+                <p><strong>Descendentes</strong> de uma antiga sub-raça de elfos de pele negra, os drow foram banidos da superfície do mundo por seguirem a deusa Lolth pelo caminho do mal e corrupção. Agora, eles construíram sua própria civilização nas profundezas do Subterrâneo, moldados pelo Caminho de Lolth. Também conhecidos como elfos negros, os drow possuem pele negra similar a obsidiana polida e cabelos brancos opacos ou amarelo pálido. Normalmente eles possuem olhos muito pálidos (tão pálidos que são confundidos com olhos brancos) com tons de lilás, prata, rosa, vermelho e azul. Eles costumam ser menores e mais magros que a maioria dos elfos.<br><strong>Aventureiros</strong> drow são raros e a raça não existe em todo o mundo. Verifique com seu Mestre se a raça drow está disponível como personagem de jogador.</p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Carisma aumenta em 1.</p>
+                <p><strong>Visão no Escuro Superior:</strong> Sua visão no escuro tem alcance de 36 metros de raio.</p>
+                <p><strong>Sensibilidade á Luz Solar:</strong> Você possui desvantagem nas jogadas de ataque e testes de Sabedoria (Percepção) relacionados a visão quando você, o alvo do seu ataque, ou qualquer coisa que você está tentando perceber, esteja sob luz solar direta.</p>
+                <p><strong>Magia Drow:</strong> Você possui o truque globos de luz. Quando você alcança o 3° nível, você pode conjurar a magia fogo das fadas. Quando você alcança o 5° nível, você pode conjurar escuridão. Você precisa terminar um descanso longo para poder conjurar as magias desse traço novamente. Carisma é sua habilidade chave para conjurar essas magias.</p>
+                <p><strong>Treinamento Drow com Armas:</strong> Você possui proficiência com rapieiras, espadas curtas e bestas de mão.</p>
+            `
+        }
+        
+
+        const selectBox3 = document.getElementById('selectBox3');
+        const subraceDescriptionsDiv = document.getElementById('subraceDescriptions');
+
+        function updateSubraceDescription() {
+            const subrace = selectBox3.value;
+            const description = subraceDescriptions[subrace] || '';
+            subraceDescriptionsDiv.innerHTML = description;
+            subraceDescriptionsDiv.style.display = description ? 'block' : 'none';
+
+            const imageUrl = imageUrlMap[subrace] || '';
+
+            let imageElement = document.getElementById('subraceImage');
+            if (!imageElement) {
+                imageElement = document.createElement('img');
+                imageElement.id = 'subraceImage';
+                imageElement.className = 'subrace-image';
+                document.body.appendChild(imageElement);
+            }
+
+            if (imageUrl) {
+                imageElement.src = imageUrl;
+                imageElement.style.display = 'block';
+            } else {
+                imageElement.style.display = 'none';
+            }
+        }
+
+        selectBox3.addEventListener('change', updateSubraceDescription);
+    </script>
+</body>
+</html>

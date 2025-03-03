@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>D&D - Seleção de Classe (3)</title>
+    <style>
+        body {
+            background-image: url("imageens/background.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow-y: auto; /* Ensure scrollbar is always visible */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cinzel-uniquifier {
+            font-family: "Cinzel", serif;
+            font-optical-sizing: auto;
+            font-weight: 650;
+            font-style: normal;
+        }
+
+        .uncial-antiqua-regular {
+            font-family: "Uncial Antiqua", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0);
+            width: 80%;
+            margin: 20px auto;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 10px; /* Largura da barra de rolagem */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Cor do trilho */
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888; /* Cor do polegar */
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Cor do polegar ao passar o mouse */
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background-color: rgba(255, 255, 255, 0.15); /* Tornando o grid transparente */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .item, .item2 {
+            font-family: "Uncial Antiqua", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            background-color: rgba(255, 255, 255, 0.35); /* Ajustando transparência do item */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .item img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .item2 {
+            font-family: "Cinzel", serif;
+            font-optical-sizing: auto;
+            font-weight: 650;
+            font-style: normal;
+            padding: 10px;
+        }
+
+        .item:hover,
+        .item.active {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.35);
+        }
+
+        .item h3, .item2 h3 {
+            margin-top: 0;
+        }
+
+        .item p, .item2 p {
+            margin-bottom: 0;
+        }
+
+        .info {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -150px;
+            background-color: rgba(255, 255, 255, 0.35); /* Ajustando transparência da info */
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+            transition: bottom 0.3s ease-in-out;
+            z-index: -1;
+        }
+
+        .item.active .info {
+            display: block;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .new-screen {
+            display: none;
+        }
+
+        .new-screen.active {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: "Cinzel", serif;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #333;
+            color: white;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+
+        .enter-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: "Cinzel", serif;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #333;
+            color: white;
+            transition: background-color 0,3s ease-in-out;
+        }
+
+        .enter-button:hover {
+            background-color: #555;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid" id="mainGrid">
+            <div class="item" onclick="novaPagina('barbaro')">
+                <img src="imageens/barbarian.png" alt="Bárbaro">
+                <div class="content"> 
+                    <h3>Bárbaro</h3>
+                    <p>Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Bárbaro</h4>
+                    <p>Dado de Vida<br>Habilidades Primárias<br>Proficiências em Resistência<br>Proficiências em</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('bardo')">
+                <img src="imageens/bard.png" alt="Bardo">
+                <div class="content">
+                    <h3>Bardo</h3>
+                    <p>Um místico inspirador que possui poderes que ecoam a música da criação</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Bardo</h4>
+                    <p>Os bardos são artistas e poetas mágicos que inspiram aliados e confundem inimigos com suas habilidades versáteis e encantadoras.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('bruxo')">
+                <img src="imageens/warlock.png" alt="Bruxo">
+                <div class="content">
+                    <h3>Bruxo</h3>
+                    <p>Um portador de magia derivada de barganha com uma entidade planar</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Bruxo</h4>
+                    <p>Os bruxos obtêm seus poderes de entidades sobrenaturais com as quais fizeram pactos. Eles possuem uma magia única e versátil, mas devem cumprir os termos de seus pactos para manter seus poderes.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('clerigo')">
+                <img src="imageens/cleric.png" alt="Clérigo">
+                <div class="content">
+                    <h3>Clérigo</h3>
+                    <p>Um campeão sacerdotal que empunha magia divina a serviço de um poder maior</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Clérigo</h4>
+                    <p>Os clérigos são intermediários entre os deuses e os mortais. Eles possuem poderes divinos que usam para curar os feridos, proteger os inocentes e punir os ímpios.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('druida')">
+                <img src="imageens/druid.png" alt="Druida">
+                <div class="content">
+                    <h3>Druida</h3>
+                    <p>Um sacerdote da Crença Antiga, detentor dos poderes da natureza – luz da lua e crescimento das plantas, fogo e relâmpagos – e capaz de adotar formas animais</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Druida</h4>
+                    <p>Os druidas são guardiões da natureza, capazes de se transformar em animais e manipular os elementos naturais para proteger os ecossistemas e combater aqueles que ameaçam o equilíbrio natural.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('feiticeiro')">
+                <img src="imageens/sorceror.png" alt="Feiticeiro">
+                <div class="content">
+                    <h3>Feiticeiro</h3>
+                    <p>Um conjurador que possui magia latente advinda de um dom ou linhagem</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Feiticeiro</h4>
+                    <p>Os feiticeiros nascem com uma habilidade inata para a magia, derivada de um ancestral draconiano, uma linhagem feérica ou uma outra fonte misteriosa. Eles não estudam magia, mas a manifestam naturalmente através de sua força de vontade.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('guerreiro')">
+                <img src="imageens/fighter.png" alt="Guerreiro">
+                <div class="content">
+                    <h3>Guerreiro</h3>
+                    <p>Um mestre do combate, perito em uma vasta gama de armas e armaduras</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Guerreiro</h4>
+                    <p>Os guerreiros são combatentes treinados nas artes marciais. Eles dominam uma variedade de armas e armaduras, tornando-se especialistas em combate corpo a corpo e estratégias de batalha.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('ladino')">
+                <img src="imageens/rogue.png" alt="Ladino">
+                <div class="content">
+                    <h3>Ladino</h3>
+                    <p>Um trapaceiro que utiliza de furtividade e astúcia para sobrepujar os obstáculos e inimigos</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Ladino</h4>
+                    <p>Os ladinos são especialistas em furtividade, engano e combate sorrateiro. Eles são mestres em desarmar armadilhas, desbloquear fechaduras e atacar seus inimigos com ataques furtivos devastadores.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('magoGrid','mago')">
+                <img src="imageens/wizard.png" alt="Mago">
+                <div class="content">
+                    <h3>Mago</h3>
+                    <p>Um usuário de magia escolado, capaz de manipular as estruturas da realidade</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Mago</h4>
+                    <p>Os magos são estudiosos dedicados à arte da magia arcana. Eles lançam feitiços poderosos, manipulam a energia mágica e desvendam os segredos do universo, tornando-se especialistas em uma ampla variedade de magias e encantamentos.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('monge')">
+                <img src="imageens/monk.png" alt="Monge">
+                <div class="content">
+                    <h3>Monge</h3>
+                    <p>Um mestre das artes marciais, utilizando o poder corporal para atingir a perfeição física e espiritual</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Monge</h4>
+                    <p>Os monges são praticantes de artes marciais e disciplinas espirituais. Eles canalizam sua energia interna (chi) para realizar proezas físicas e manifestar habilidades sobrenaturais, alcançando um equilíbrio entre mente, corpo e espírito.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('paladinoGrid','paladino')">
+                <img src="imageens/paladin.png" alt="Paladino">
+                <div class="content">
+                    <h3>Paladino</h3>
+                    <p>Um guerreiro divino vinculado a um juramento sagrado</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Paladino</h4>
+                    <p>Os paladinos são campeões da justiça e da fé, jurando proteger os indefesos e combater o mal em nome de seus deuses ou ideais sagrados. Eles possuem habilidades divinas e poderes de cura, além de serem combatentes habilidosos.</p>
+                </div>
+            </div>
+
+            <div class="item" onclick="novaPagina('patrulheiro')">
+                <img src="imageens/ranger.png" alt="Patrulheiro">
+                <div class="content">
+                    <h3>Patrulheiro</h3>
+                    <p>Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização</p>
+                </div>
+                <div class="info">
+                    <h4>Detalhes do Patrulheiro</h4>
+                    <p>Os patrulheiros são exploradores habilidosos e rastreadores experientes. Eles dominam o combate à distância, usando magia natural e habilidades de sobrevivência para proteger a natureza e combater inimigos que ameaçam os limites da civilização.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- DIVISÃO DA NEWSCREEN -->
+
+
+        <div class="new-screen" id="newScreen">
+            <div id="barbaroGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d12</p>
+                </div> 
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Força</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Força & Constituição</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Armaduras leves e médias, escudos, armas simples e marciais </p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="bardoGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d8</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Destreza & Carisma </p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Armaduras leves, armas simples, bestas de mão, espadas longas, rapieiras, espadas curtas </p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="bruxoGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d8</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Sabedoria & Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Armaduras leves, armas simples </p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="clerigoGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d8</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Sabedoria</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Sabedoria & Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Armaduras leves e médias, escudos, armas simples</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="druidaGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d8</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Sabedoria</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Inteligência & Sabedoria</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Armaduras leves e médias (não metálicas), escudos (não metálicos), clavas, adagas, dardos, azagaias, maças, bordões, cimitarras, foices, fundas e lanças</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="feiticeiroGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d6</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h>
+                    <p>Constituição & Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Adagas, dardos, fundas, bordões, bestas leves</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="guerreiroGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d10</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Força ou Destreza</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Força & Constituição</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Todas as armaduras, armas simples e marciais</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="ladinoGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d8</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Destreza</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Destreza & Inteligência</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h</p>
+                    <p>Armaduras leves, armas simples, bestas de mão, espadas longas, espadas curtas</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="magoGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d6</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Inteligência</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Inteligência & Sabedoria</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Adagas, dardos, fundas, bastões, bestas leves</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="mongeGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d8</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Destreza & Sabedoria</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h>
+                    <p>Força & Destreza</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Armas simples, espadas curtas</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="paladinoGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d10</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h3>
+                    <p>Força & Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h3>
+                    <p>Sabedoria & Carisma</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Todas as armaduras, escudos, armas simples e marciais</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+            <div id="patrulheiroGrid" class="grid hidden">
+                <div class="item2">
+                    <h3>Dado de Vida</h3>
+                    <p>d10</p>
+                </div>
+                <div class="item2">
+                    <h3>Habilidades Primárias</h>
+                    <p>Destreza & Sabedoria</p>
+                </div>
+                <div class="item2">
+                    <h3>Proficiências em Resistência</h</p>
+                    <p>Força & Destreza</p>
+                </div> 
+                <div class="item2">
+                    <h3>Proficiências em Armas e Armaduras</h3>
+                    <p>Armaduras leves e médias, escudos, armas simples e marciais</p>
+                </div>
+                <button class="back-button" onclick="goBack()">Voltar</button>
+                <button class="enter-button" onclick="goEnter()">Continuar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+                //A PAGINA HIDDEN NAO ESTA APARECENDO!!!!!!!!!!!!!!!!!!!!!
+         // Função para redirecionar para a próxima página com o parâmetro
+         function novaPagina(characterClass) {
+    const urlParams = new URLSearchParams(window.location.search);
+    var raca = urlParams.get('raca');
+
+    // Construção correta da URL com o separador '&'
+    let url = "index 4.html?raca=" + encodeURIComponent(raca) + "&class=" + encodeURIComponent(characterClass);
+
+    // Redireciona para a próxima página
+    window.location.href = url;
+}
+
+
+
+
+        
+        function showNewScreen(gridId) {
+            document.querySelectorAll('.item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            document.querySelectorAll('.grid').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            document.getElementById('mainGrid').style.display = 'none';
+            document.getElementById('newScreen').classList.add('active');
+            document.getElementById(gridId).classList.remove('hidden');
+        }
+
+        function goBack() {
+            document.querySelectorAll('.grid').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            document.getElementById('newScreen').classList.remove('active');
+            document.getElementById('mainGrid').style.display = 'grid';
+        }
+        
+        function goEnter() {
+            location.href = 'index 4.html';  // Substituir por location.href = 'url_proxima_pagina.html';
+} 
+    </script>
+</body>
+</html>

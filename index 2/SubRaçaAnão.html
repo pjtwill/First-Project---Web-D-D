@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha Sua Subraça</title>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('stock-photo-old-paper-background-553326538-transformed.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cave-stone {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 24px;
+            color: #4A2C2A;
+        }
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+        button:hover {
+            background-color: #eb760a;
+        }
+        .race-info {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .subrace-image {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 375px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="cave-stone">Escolha Sua Subraça</h2>
+        <button class="cave-stone" onclick="voltar()">Voltar</button>
+        <button class="cave-stone" onclick="continuar()">Continuar</button>
+        <select class="cave-stone" id="selectBox3" aria-label="Selecione sua subraça">
+            <option class="cave-stone" value="Anão da Colina"selected>Anão da Colina</option>
+            <option class="cave-stone" value="Anão da Montanha">Anão da Montanha</option>
+        </select>
+        <div id="subraceDescriptions" class="cave-stone race-info" style="text-align: left;"></div>
+    </div>
+    <script>
+        function voltar() {
+            window.location.href = 'Projeto DeD.html';
+        }
+        function continuar()
+            {
+            location.href = '../index 3.html?raca=' + document.getElementById("selectBox3").value;  // Substituir por location.href = 'url_proxima_pagina.html';
+            }
+        
+
+        const imageUrlMap = {
+            'Anão da Colina': 'Anão da Colina.png',
+            'Anão da Montanha': 'Anão da Montanha.png'
+        };
+
+        const subraceDescriptions = {
+            'Anão da Colina': `
+                <p><strong>Traços Subraciais de Anões da Colina:</strong></p>
+                <p><strong>Como</strong> um anão da colina, você tem sentidos aguçados, maior intuição e notável resiliência. Os anões dourados de Faerûn, que vivem em seu poderoso reino ao sul do continente, são anões da colina, assim como os exilados Neidar e os depreciáveis Klar de Krynn, no cenário de Dragonlance.</p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Sabedoria aumenta em 1.</p>
+                <p><strong>Tênacidade Anã:</strong> Seu máximo de pontos de vida aumentam em 1, e cada vez que o anão da colina sobe um nível, ele recebe 1 ponto de vida adicional.</p>
+            `,
+            'Anão da Montanha': `
+                <p><strong>Traços Subraciais de Anões da Montanha:</strong></p>
+                <p><strong>Como</strong> um anão da montanha, você é forte e resistente, acostumado a uma vida difícil em terrenos difíceis. Você provavelmente tem a descendência daqueles mais altos (para um anão) e tende a possuir uma coloração mais clara. Os anões do escudo do norte de Faerûn, bem como o clã governante Hylar e os clãs nobres Daewar de Dragonlance, são anões da montanha.</p>
+                <p><strong>Aumento no Valor de Habilidade:</strong> Seu valor de Força aumenta em 2.</p>
+                <p><strong>Treinamento Anão com Armaduras:</strong> Você adquire proficiência em armaduras leves e médias.</p>
+            `
+        };
+
+        const selectBox3 = document.getElementById('selectBox3');
+        const subraceDescriptionsDiv = document.getElementById('subraceDescriptions');
+
+        function updateSubraceDescription() {
+            const subrace = selectBox3.value;
+            const description = subraceDescriptions[subrace] || '';
+            subraceDescriptionsDiv.innerHTML = description;
+            subraceDescriptionsDiv.style.display = description ? 'block' : 'none';
+
+            const imageUrl = imageUrlMap[subrace] || '';
+
+            let imageElement = document.getElementById('subraceImage');
+            if (!imageElement) {
+                imageElement = document.createElement('img');
+                imageElement.id = 'subraceImage';
+                imageElement.className = 'subrace-image';
+                document.body.appendChild(imageElement);
+            }
+
+            if (imageUrl) {
+                imageElement.src = imageUrl;
+                imageElement.style.display = 'block';
+            } else {
+                imageElement.style.display = 'none';
+            }
+        }
+
+        selectBox3.addEventListener('change', updateSubraceDescription);
+    </script>
+</body>
+</html>
